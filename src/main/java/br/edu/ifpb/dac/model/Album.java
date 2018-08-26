@@ -1,19 +1,31 @@
 package br.edu.ifpb.dac.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Album {
+@Entity
+public class Album implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
+    @Enumerated(EnumType.STRING)
     private Estilo estilo; //Rock, Pop, Sertanejo
+    @OneToOne(cascade = CascadeType.ALL)
     private Banda banda;
+    @Temporal(TemporalType.DATE)
     private LocalDate anoDeLancamento;
-
-    public Album(Estilo estilo, Banda banda, LocalDate anoDeLancamento) {
-        this.estilo = estilo;
-        this.banda = banda;
-        this.anoDeLancamento = anoDeLancamento;
-    }
 
     public Album() {
 
@@ -35,6 +47,14 @@ public class Album {
         this.banda = banda;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public LocalDate getAnoDeLancamento() {
         return anoDeLancamento;
     }
@@ -45,10 +65,11 @@ public class Album {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + Objects.hashCode(this.estilo);
-        hash = 79 * hash + Objects.hashCode(this.banda);
-        hash = 79 * hash + Objects.hashCode(this.anoDeLancamento);
+        int hash = 7;
+        hash = 73 * hash + this.id;
+        hash = 73 * hash + Objects.hashCode(this.estilo);
+        hash = 73 * hash + Objects.hashCode(this.banda);
+        hash = 73 * hash + Objects.hashCode(this.anoDeLancamento);
         return hash;
     }
 
@@ -64,6 +85,9 @@ public class Album {
             return false;
         }
         final Album other = (Album) obj;
+        if (this.id != other.id) {
+            return false;
+        }
         if (this.estilo != other.estilo) {
             return false;
         }
@@ -78,8 +102,8 @@ public class Album {
 
     @Override
     public String toString() {
-        return "Album{" + "estilo=" + estilo + ", banda=" + banda + 
-                ", anoDeLancamento=" + anoDeLancamento + '}';
+        return "Album{" + "id=" + id + ", estilo=" + estilo + ", banda="
+                + banda + ", anoDeLancamento=" + anoDeLancamento + '}';
     }
 
 }

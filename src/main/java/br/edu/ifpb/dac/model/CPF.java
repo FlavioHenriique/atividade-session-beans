@@ -1,7 +1,9 @@
 package br.edu.ifpb.dac.model;
 
 import java.util.Objects;
+import javax.persistence.Embeddable;
 
+@Embeddable
 public class CPF {
 
     private String numero;

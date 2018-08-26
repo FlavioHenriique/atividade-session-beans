@@ -1,13 +1,29 @@
 package br.edu.ifpb.dac.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
+import javax.persistence.AttributeOverride;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-public class Integrante {
+@Entity
+public class Integrante implements Serializable {
 
+    @Id
     private int id;
     private String nome;
+    @Embedded
+    @AttributeOverride(
+            name = "valor",
+            column = @Column(name = "cpf-integrante")
+    )
     private CPF cpf = new CPF("");
+    
     private LocalDate dataDeNascimento;
 
     public Integrante() {
@@ -90,7 +106,7 @@ public class Integrante {
 
     @Override
     public String toString() {
-        return "Integrante{" + "id=" + id + ", nome=" + nome + ", cpf=" 
+        return "Integrante{" + "id=" + id + ", nome=" + nome + ", cpf="
                 + cpf + ", dataDeNascimento=" + dataDeNascimento + '}';
     }
 

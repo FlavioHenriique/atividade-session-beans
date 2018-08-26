@@ -3,10 +3,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Session Beans</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+        <h3>Cadastro de bandas</h3>
+        <h:form>
+            Nome:
+            <h:inputText value="#{bandaController.banda.nomeFantasia}"/>
+            Local de origem:
+            <h:inputText value="#{bandaController.banda.localDeOrigem}"/>
+            <h:commandButton value="Salvar" action="#{bandaController.salvar()}"/>
+            
+            <h3>Bandas cadastradas</h3>
+            <h:dataTable value="#{bandaController.todas()}" var="banda">
+                 <h:column>#{banda.nomeFantasia}</h:column>
+                <h:column>#{banda.localDeOrigem}</h:column>
+                <h:column>
+                    <h:commandButton action="#{bandaController.deletar(banda)}" value="X"/>
+                </h:column>
+            </h:dataTable>
+            
+            
+        </h:form>
+
+
+
     </h:body>
 </html>
 
