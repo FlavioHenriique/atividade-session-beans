@@ -23,4 +23,8 @@ public class PlaylistService {
         return playlist.getPlaylist();
     }
 
+    public void finalizar() {
+        playlist.finalizar();
+    }
+
 }

@@ -13,7 +13,7 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 @Singleton
-public class Playlists implements Serializable{
+public class Playlists implements Serializable {
 
     private List<Banda> playlist;
 
@@ -37,6 +37,10 @@ public class Playlists implements Serializable{
 
     public void setPlaylist(List<Banda> playlist) {
         this.playlist = playlist;
+    }
+
+    public void finalizar() {
+        playlist.clear();
     }
 
 }

@@ -120,7 +120,8 @@ public class BandaDAO {
     }
 
     public Banda listarPorIntegrantes(String nome) {
-        String sql = "SELECT b.id FROM Banda b, Integrante i"
+        String sql = "SELECT b.id "
+                + "FROM Banda b, Integrante i "
                 + "WHERE b.id = i.banda AND i.nome ilike ?;";
         PreparedStatement stmt;
         try {

@@ -29,4 +29,7 @@ public class PlaylistController implements Serializable {
         return service.getPlaylist();
     }
 
+    public void finalizar() {
+        service.finalizar();
+    }
 }
