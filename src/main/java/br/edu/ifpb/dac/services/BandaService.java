@@ -3,9 +3,13 @@ package br.edu.ifpb.dac.services;
 import br.edu.ifpb.dac.db.BandaDAO;
 import br.edu.ifpb.dac.model.Banda;
 import java.util.List;
+import javax.ejb.EJB;
+import javax.ejb.Stateless;
 
+@Stateless(name = "bandaservice")
 public class BandaService {
     
+    @EJB(beanName = "bandadao")
     private BandaDAO dao;
     
     public BandaService(){

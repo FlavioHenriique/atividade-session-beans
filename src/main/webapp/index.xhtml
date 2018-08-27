@@ -1,7 +1,8 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Session Beans</title>
     </h:head>
@@ -13,21 +14,35 @@
             Local de origem:
             <h:inputText value="#{bandaController.banda.localDeOrigem}"/>
             <h:commandButton value="Salvar" action="#{bandaController.salvar()}"/>
-            
+
             <h3>Bandas cadastradas</h3>
             <h:dataTable value="#{bandaController.todas()}" var="banda">
-                 <h:column>#{banda.nomeFantasia}</h:column>
+                <h:column>#{banda.nomeFantasia}</h:column>
                 <h:column>#{banda.localDeOrigem}</h:column>
                 <h:column>
                     <h:commandButton action="#{bandaController.deletar(banda)}" value="X"/>
                 </h:column>
             </h:dataTable>
-            
-            
         </h:form>
-
-
-
+        <h:form>
+            <h3>Cadastro de albuns</h3>
+            Estilo: 
+            <h:selectOneMenu id="estilos" value="#{albumController.album.estilo}">
+                <f:selectItems value="#{albumController.estilos()}"/>
+            </h:selectOneMenu>
+            Banda:
+            <h:selectOneMenu id="bandas" value="#{albumController.album.banda}">
+                <f:selectItems value="#{bandaController.todas()}" var="banda"
+                               itemValue="#{banda}" itemLabel="#{banda.nomeFantasia}"
+                               />
+            </h:selectOneMenu>
+            Lançamento:<h:inputText value="#{albumController.album.anoDeLancamento}"
+                                    converter="convert.lancamento"/>
+            <h:commandButton action="#{albumController.salvar()}" value="Salvar"/>
+        </h:form>
+        
+        <br></br><br></br>
+        <a href="playlist.xhtml">Gerenciar playlists</a>
     </h:body>
 </html>
 

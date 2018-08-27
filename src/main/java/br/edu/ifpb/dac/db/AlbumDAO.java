@@ -12,7 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
+import javax.ejb.Stateless;
 
+@Stateless(name = "albumdao")
 public class AlbumDAO {
 
     private Connection conn;
