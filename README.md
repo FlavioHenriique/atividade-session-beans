@@ -7,4 +7,4 @@ Atividade Avaliativa para a disciplina de Desenvolvimento de Aplicações Corpor
 
 ### Para desimplantar o banco de dados, execute o seguinte comando:
 
-**sh kill.sh**
+**`sh kill.sh`**
